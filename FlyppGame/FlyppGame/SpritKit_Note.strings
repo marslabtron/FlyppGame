@@ -1,0 +1,247 @@
+/* 
+  SpritKit_Note.strings
+  FlyppGame
+
+  Created by dingjianjaja on 16/6/2.
+  Copyright © 2016年 dingjian. All rights reserved.
+*/
+
+/*
+
+Sprite Kit学习笔记（五）模拟物理世界
+终于有时间写博客了，隔了好长一段时间没研究SpriteKit了，今天装了个Xcode5的DP2版本，惊奇地发现，在新建project的时候居然看到了SpriteKit Game的选项，选了它之后直接创建一个SpriteKit项目，苹果想得还真是周到，省去之前很多琐碎的步骤，如果你是对SpriteKit很熟悉的开发者的话那大可直接使用Sprite Game来创建项目，如果是初学者的话，建议还是建一个空项目，跟着官方的文档，一步一步去做，自然会让你更好地了解SpriteKit。其实，直接用SpriteKit Game创建项目，它只是帮你自动生成了一小部分代码，自己打一遍也不是很难，起码知道它是怎样启动和运作的。由于现在iOS7还是beta版本，Xcode5也是DP版本的，API文档没什么变化，不过估计接下来关于SpriteKit还会有更多好玩的东西出来，拭目以待咯。
+
+隔了这么久，不打一下代码还真有点生疏了，今天重新看了一遍SpriteKit的Simulate Physics，也就是物理系统，突然间发现了好多新的东西，之前看都是粗略地带过，今天仔细一看，还真有很多东西，SpriteKit确实很强大，在2d方面，算是做到尽可能好的了。废话不多说，下面就从头来学习SpriteKit的物理系统。
+
+完成游戏的物理系统设置，你需要一下完成以下几点：
+1、把SKPhysicsBody关联到拥有物理属性的游戏对象上，每一个游戏对象node节点都有physicsbody属性
+2、设置physicsbody的各个属性，让游戏对象在游戏里面呈现更好的游戏效果
+3、设置整个游戏世界的物理系统，比如重力，注意，scene也有物理属性
+4、可以在physicsbody上施加力
+5、定义物体之间的碰撞处理
+6、优化整个物理系统
+
+其实个人觉得比较有趣的事碰撞那一块，有新的东西在里面，至少我在其他游戏引擎里面没见过，也可能是我见识得比较少吧，不过个人觉得，SpriteKit的碰撞检测做得真心赞。
+
+physics body（后面简称pb）有三种，一种是运动的，一种是静止的，还有一种叫做edge的，运动的pb可以接受外界所有的关于物理的影响，静止的pb没有速度，不受力和碰撞的影响，区分这两种pb是有好处的，普通的游戏对象一般都是运动的pb，而墙壁啊，地面，游戏场景的边界等就可以静止的pb
+
+edge的话，其实就是边啦，可以这样理解，自由无规则的pb，一般边界可以用它来限定，它频繁地被用来当作游戏场景的边界，还有一个用处是，游戏对象都是有形状的，SpriteKit提供了几种形状给我们，但其实在现实真正的游戏当中，往往我们的游戏对象都是不规则图形，这个时候，如果你想要为你的游戏对象加上一个具有相似形状的pb的话，就可以考虑使用edge了，不过这不是经常采取的方法，使用edge来定形要很大量的计算，消耗资源，这会让你的游戏变得不顺畅，所以不是很提倡这种做法。
+
+下面贴段用edge作为scene边界的代码
+- (void) createSceneContents
+{
+    self.backgroundColor = [SKColor blackColor];
+    self.scaleMode = SKSceneScaleModeAspectFit;
+    self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:self.frame];
+}
+
+代码不难理解，最主要的函数就是bodyWithEdgeLoopFromRect:，就不多说了吧。
+
+根据指定的形状创建pb也不是很难，具体的代码就不贴出来了，建议还是去看看SKPhysicsBody的api，看完会更有利于学习整个物理系统。
+
+//这里说几个pb的属性吧，mass属性，即质量，这个学过物理或者没学过的都知道的拉，有mass当然就有density密度啦，这两个属性是会随着对方的变化而变化的，唯一不变的是物体的形状，整个真得学过物理才知道，mass等于density乘于area体积。
+
+"friction"属性，摩擦力，就是物体表面的粗糙程度，在其上面运动的物体会受到其friction的影响，力的话还有linearDamping阻力和angularDamping角力，就是旋转的力，这个跟你的游戏世界里的环境有空，一般是空气阻力啦，或者是在水中的阻力啦，由你的环境决定。
+
+"restitution"属性，可以理解为势能吧，在碰撞的时候它决定碰撞的威力，即作用效果的强弱。
+
+"dynamic"属性，一般动态pb的默认值为yes，将其设置为no之后，就是静态pb了。
+
+"affectedByGravity"属性，yes即接受重力影响，no则不受重力影响。
+
+"allowsRotation"属性，它决定物体是否能选择，设置为no即冻结旋转。
+
+大概这些个属性吧，需要注意的是，mass和density，在我们的pb创建后，area就已经被设置为固定的，不可改变的，所以mass和density之间的变化会相互影响，根据你的需要你可以选择设置mass来确定density，也可以设置density来确定mass，根据实际情况而定，两者会有不同的效果，这涉及物理方面的知识。
+
+另外很多属性都是会变化的，结合实际中的物理性质可知，SpriteKit在每一帧都会重新计算每个属性值，你可以在更新的时候通过一些函数来修改一些属性，另外，当切换到不同的场景不同的环境中时，根据你的需要，在pross-post scene的时候修改一些属性，以到期望的效果。
+
+前面说过，scene也有物理性质，它还有个physicsWorld的属性，即整个的游戏世界里的物理系统，这里说一下速度，正常速度为1，举个例子吧，当为0.5时，pb的执行速度会减慢一半，为2时即加快一倍
+接下来，你可能需要为你的pb施加一些力，好让其运动起来，有两个力force和impulse，force是一个持续的力，每一帧都要设置，好让力延续下去，impulse是一个即时的力，即发力又一个立即的效果，但不会持续下去，鉴于两者区别不大，官方的文档也只着重说了下force。
+
+哦，加力其实就是加个向量，我们只需要提供一个点，让物体朝那个点运动，加力可根据作用点分为三种，一种是让物体直线运动的力，一种只让物体转动的力，还有就是作用在物体的一点上，这个时候，SpriteKit会根据物体的形状去决定加在这个点上的力将会产生怎样的效果。
+
+终于说到碰撞了，之前的文章提到过，cocos2d做碰撞检测用的是两个物体的rect是否交叉，其他有关碰撞检测的一些东西实现起来比较麻烦，而unity则提供了强大的物理系统，里面的碰撞做得真的是没话说，就是2d游戏也依然能使用它的物理系统，SpriteKit的碰撞有点向unity，其实整个的物理系统都有点像，个人觉得，physics body即rigibody，当然，unity毕竟是3d引擎，关于物理系统的东西丰富很多。
+其实，在node节点关联上physics body之后，SpriteKit在两个物体碰撞时就做了些计算的，这个是我觉得很强大的地方之一，也就是说，你可以真的把它们当作是两个真实世界中物体的碰撞，在碰撞之后，物体会怎样都在精确的计算之中。不过单单靠这些，是不能做一些碰撞检测的，如果你想两个物体在碰撞时按你的想法去反应的话，你就需要设置一些属性了。
+
+还是pb的属性，这三个属性很重要：
+"categoryBitMask"，它标记了物体属于那一类物体，默认值为0xffffffff
+"collisionBitMask"，它标记了哪些物体可以跟其发生碰撞，默认值为0xffffffff
+"contactTestBitMask"，它标记了哪些物体会和其发生碰撞后产生一些影响，默认值为0x00000000
+
+这三个数值均由32位的十六进制数来表示，即你的游戏可以有32中不同类型的物体，其实用不到那么多，为什么用这样的值来表示，这也是我觉得新颖的地方，在做碰撞检测时，这些值是拿来做逻辑与运算，计算碰撞用的，感觉很不粗吧。
+判断其他物体是否可以跟自己发生碰撞，要根据自己的collisionBitMask的值与对方物体的categoryBitMask的值进行逻辑与运算，得到的结果不为0，即可以发生碰撞。
+
+判断碰撞的两个物体是否发生影响时，假设为A和B，首先是A的categoryBitMask与B的contactTestBitMask进行逻辑与运算，B也做同样的运算，当两者的结果都不为0时，两者即可在碰撞的时候互相影响
+这要仔细想一想，好好消化一下才行，这是约定好的东西，直接用就行了，不过如果想深入研究的话，再去看官方的api吧。
+
+设定好了这些值以后呢，我们需要一些协议来为我们完成我们想要做的事情，这时又得用到scene啦。
+
+SpriteKit提供给我们一个叫做SKPhysicsContactDelegate，这也是它唯一给的一个协议，在初始化scene的时候设置scene.physicsWorld.contactDelegate = self;在.h头文件加上该协议，它提供了好两个检测碰撞的函数，-didBeginContact：和-didEndContact：参数都是一个SKPhysicsContact，里面包含了两个碰撞体的信息，和碰撞的信息，建议大家去看看SKPhysicsContact的api，开发起来才更加得心应手，我们就可以在这两个函数里做我们在碰撞时要做的事情了。
+
+好一个碰撞检测啊。
+
+usePreciseCollisionDetection 提高碰撞精度的属性，前面说过，就不多说了。
+
+说完碰撞，接着是将多个pb物体连接在一起的joint，可以理解为骨骼吧，如果你想你的游戏展现一些更复杂的物理特效的话，你可能会需要它，这里也不多说了。
+
+在游戏中，有时我们需要操控我们的游戏对象，整个时候就需要选中该对象，当对象有了pb之后，我们可以通过很多方法来找到它。最常用的方法，应该不陌生了，就是通过ray射线来寻找物体，首先我们需要确定一条射线，举个例子吧，在平面中，我们可以以（0， 0）为起点，手指点击屏幕的点为终点，一般在3d场景，是通过摄像机的位置点作为起点，然后点击的地方为终点来确定一条射线，然后通过函数bodyAlongRayStart：end：来获取射线穿过的物体，注意整个函数只能获取一个，如果你的射线穿过很多个物体，这时可以使用enumerateBodiesAlongRayStart:end:usingBlock:函数来获取射线上所有的物体，在你的block里面，你可以拿到每个物体的信息，根据这些信息你就可以判断那个是你想要的得到的。还有就是可以根据名字获取物体，整个在前面的文章有提到过。
+
+另外还可以根据点来寻找物体，bodyAtPoint：函数会根据你提供的点，判断点是否属于物体，是的话就返回该物体。还有bodyAtRect：函数，在场景中设置一个rect，当有物体进入rect时，bodyAtRect就会返回该物体。
+
+接下来是一些注意事项，虚拟整个物理系统是很消耗资源的，所以尽量让你的游戏的物理方面的计算减少，让你的游戏运行得更顺畅，记住你为你的pb设置的一切东西，根据这些设置带来的性质去实现你的游戏逻辑或者是游戏效果，只有知道它们到底是怎么一回事才能把它们的作用发挥出来，关于优化的，得花谢时间出来研究研究，每个游戏引擎都有一套或者几套优化方案，SpriteKit肯定也会有，知道你的机器是怎么运作的，然后再知道你的引擎是怎么在机器上运作的，这样会让对优化你的程序有更大的帮助。
+
+也差不多这些了吧，关于物理系统的东西，很强大，有些可能需要自己用过才知道，另外还有粒子系统，也找个时间好好研究研究，写一篇专门的关于粒子系统的笔记。
+
+最后奉上自己的代码，关于Simulate Physics的一个Demo，Demo只实现了部分物理特性，重力摩擦力的设置，碰撞处理，添加force等，点击屏幕就会生成一个燕尾侠Sprite，然后可以改变重力和摩擦力观察其在场景中的表现，触碰边界会做出反应，大概就这样子，想查看其他属性可以直接在Demo上修改，哦，我的Xcode版本是DP2的，估计没什么大的影响，就这样啦Demo下载地址。
+
+
+SpriteKit学习笔记（六）关于SpriteKit与cocos2d（转）
+今早看了一篇文章，关于SpriteKit与cocos2d的对比的，写得很不错，里面谈到的关于SpriteKit的东西也说得很好，大概第总结了SpriteKit，有很多是我之前的文章中没提到过的，现在赶紧把它记下来。
+之前没说过的一点就是苹果最大的特点之一，简洁，整个SpriteKit也就21个头文件，但基本该有的功能都有，而且做得很完善，原文把SpriteKit与cocos2d两个引擎的核心类做了一下对比，就主要把这部分贴一下吧
+(1)SKNode vs CCNode
+SKNode对于Sprite Kit的重要性如同CCNode对于cocos2d的意义一样。cocos2d的游戏场景可以用场景节点图的形式来展现，而节点同样是Sprite Kit游戏场景的根基。
+
+Sprite Kit游戏中的所有视觉元素均使用SKNode的子类来绘制。
+
+SKNode的几大子类包括:
+SKSpriteNode(对应CCSprite，用于绘制精灵纹理);
+SKVideoNode（在cocos2d中无对应类，用于播放视频）；
+SKLabelNode(对应CCLabel，用于渲染文本）；
+SKShapeNode(在cocos2d中无对应类，用于渲染基于Core Graphics路径的形状）；
+SKEmitterNode（对应CCParticleSystem，用于创建和渲染粒子系统);
+SKCropNode(无对应类，用于使用遮罩来裁剪子节点）；
+SKEffectNode（无对应类，用于在子节点上使用Core Image滤镜）。
+
+类似cocos2d,SKNode也是用节点树的形式来组织的，这一点和iOS的视图层级也有相似之处。通常情况下，在一个游戏场景中，SKScene（场景节点）将作为根节点存在，而其它的内容节点都是其子节点。场景节点将负责运行一个动画循环，从而来处理其它子节点的动作，模拟物理世界，并将节点数中的内容渲染到屏幕上。
+
+节点树中的每一个节点都为其子节点提供了一套坐标体系。当我们将某个子节点添加到节点树中时，可以通过设置其position和zPosition属性将其放置在父节点的坐标体系中。可以通过xScale,yScale和zRotation等属性来缩放和旋转节点。当某个节点的坐标体系被缩放或旋转时，其自身内容和所有子节点的内容也会发生同样的变化。
+
+类似CCNode,SKNode自身是个抽象类，没有具体的视觉呈现。但SKNode的子类则可以分别用于绘制不同的视觉内容。
+
+SKNode的frame属性可以获得节点的视觉内容的边框，通过调用calculateAccumulatedFrame方法可以获取包含该节点和其所有子节点的边框。
+
+节点树上的所有节点都可以运行动作，从而可以产生动画和动作效果，添加或删除节点，播放音效或其它特定任务。在Sprite Kit中，动作(action)的重要性尤胜于cocos2d。
+
+SKNode还有其它一些属性，比如设置透明度的alpha属性，设置是否显示的hidden属性等。这里就不一一列举了，开发者可以参考苹果官方文档了解更详细的信息。
+
+接下来说说SKNode和CCNode不太一样的地方。在cocos2d中，有专门的CCLayer类用于接收触摸事件或加速计事件，从而处理用户交互。
+
+但在Sprite Kit中并不存在一个专门的Layer类，所有的SKNode节点都可以对屏幕上的用户交互做出直接响应，这一点相对cocos2d实在是个大大的改进。我们可以转换坐标体系，根据触摸测试（点击测试）来判断用户的触摸点在哪个节点上。同时我们还可以对节点树中的节点进行交叉测试，从而来判断它们的物理区域是否重叠。当然，cococs2d中也是完全可以实现这一点的，只是多了一个中间步骤而已。
+
+如果我们来仔细看看SKNode.h的源代码，会发现SKNode继承自UIResponder，并遵循NSCopying和NSCoding协议。而查看CCNode.h的源代码，会发现CCNode只是简单的继承自NSObject，不像SKNode这样一出生就肩负重任。
+
+正因为SKNode继承自UIResponder，所以所有的SKNode节点其实都可以直接对用户交互作为直接响应，比起cocos2d利用CCLayer来处理交互的方式要直接一些。
+
+另外，因为SKNode要遵循NSCopying和NSCoding协议，所以在自行创建SKNode的子类时，如果要给该类添加要archive的属性，就必须实现NSCoding协议。
+
+（2）SKView vs CCGLView/CCDirector
+SKView继承自UIView（如果是Mac应用则继承自NSView,不过这里默认都是iOS应用，就不再赘述了）。
+
+我们都知道在cocos2d中使用CCGLView，而CCGLView本身又继承自UIView,所以殊途同归。当然，cocos2d中的CCGLView是将OpenGL场景渲染进EAGL中。至于具体的细节，如果不是引擎的开发者，或者对OpenGL不感冒，也没必要深入研究。
+
+Sprite Kit中的SKView类比cocos2d中的CCGLView要简单的多，它的主要作用就是作为视图容器来显示Sprite Kit的内容。而这个内容则是由SKScene提供。
+
+SKView的很多作用类似于cocos2d中的CCDirector导演类。
+
+通过调用SKView的prensentScene:方法就可以在视图中呈现游戏场景的内容。
+
+通过调用presentScene:transition:方法则会以某种特定的场景切换效果从当前场景切换到新的场景。
+
+当游戏场景被显示后，将会在场景模拟（场景中的内容动画）和内容渲染之间来回切换状态。我们可以通过设置该类的paused属性来暂停游戏场景。
+
+此外，SKView还可以使用textureFromNode方法从场景内容中获取纹理图，使用Core Animation来同步渲染精灵。
+
+SKView可以设置是否显示游戏的相关测试信息（showsFPS-游戏帧速,showsDrawCount-绘制数量,showsNodeCount-节点数量）。
+SKView还提供了转换视图和游戏场景坐标的方法。
+
+当然，如果我们对比SKView和CCDirector的属性和方法，会发现CCDirector所提供的功能更全面更强大，但也有些过于追求大而全的感觉。而SKView一如苹果一贯的产品设计风格，只提供最核心的功能，对次要功能则宁可弃之不用。好处是因为方法和属性较少，很容易掌握，而不好的地方当然就是功能没有CCDirector那么全面强大了。
+
+在XXXViewController.m的viewDidLoad方法中，配置SKView的代码非常简洁明了：
+// Configure the view.
+SKView * skView = (SKView *)self.view;
+skView.showsFPS = YES;
+skView.showsNodeCount = YES;
+
+
+而紧接着就是创建和配置游戏场景的代码
+
+（3）SKScene vs CCScene
+与cocos2d中的CCScene类似，Sprite Kit中的SKScene更多起到一个容器的作用，但比起CCScene，SKScene的任务更多一些。
+
+首先，SKScene是一个抽象类，因此在实际的项目中必须创建该类的子类。游戏的主要内容和逻辑都会在子类中运行。
+SKScene的任务包括：
+a.调用update:方法
+b.在其子节点上执行动作；
+c.调用didEvaluateActions方法；
+d.对场景中的物体执行物理模拟计算；
+d.调用didSimulatePhysics方法。
+
+说到这里，就不得不说一下Sprite Kit游戏的循环。
+
+
+
+进入游戏后，由SKView负责渲染游戏场景，在游戏的每一帧，首先在update:方法里面更新游戏中角色的信息，然后由SKScene评估并执行这些动作，接下来调用didEvaluateActions方法，再然后由SKScene模拟物理世界的变化，最后再调用didSimulatePhysics方法。然后再次由SKView渲染游戏场景，重新开始下一次的循环。
+
+与cocos2d相比，这样的游戏循环逻辑更为严密清晰，初学者可能也更容易理解。
+
+（4）SKSpriteNode/SKSprite vs CCSprite
+SKSpriteNode的重要性从它的名字就可以看出来，没有Sprite,哪来的Sprite Kit?
+
+不过与cocos2d相比，SKSpriteNode的作用更加纯粹，它只是用来绘制精灵纹理。而在cocos2d中，连CCLabel文本也是CCSprite的子类。
+比cocos2d方便的是，Sprite Kit中提供了多种与SKSpriteNode具备同等地位的节点。
+
+比如专门用于播放视频的SKVideoNode，cocos2d里面没有类似的类；
+
+专门用于渲染文本的SKLabelNode，在cocos2d中使用CCSprite的子类CCLabelTTF等；
+
+用于根据Core Graphics 路径来渲染抽象形状的SKShapeNode，想来用于制作涂鸦类的游戏自然是绝佳的，可惜cocos2d中貌似没有类似的类；
+
+用于创建粒子效果的SKEmitterNode，在Cocos2d中有与之对应的类CCParticleSystem:
+
+使用遮罩来裁剪子节点的SKCropNode，在cocos2d中貌似没有对应的类；
+
+在子节点上使用Core Image 滤镜效果的SKEffectNode，在cocos2d中貌似没有对应的类。
+
+因为这几个类在Sprite Kit中与SKSpriteNode处于同一级别，这里就一并比较了，后面不再重复。
+
+(5)SKTexture vs CCTexture2D
+SKTexture的作用与cocos2d中的CCTexture2D是类似的，用于创建可以被Sprite Kit对象（通常是SKSpriteNode对象）重用的纹理图像。使用纹理可以让Sprite Kit对精灵的渲染更加高效。
+
+我们可以从不同的源中初始化纹理，比如bundle中的图片文件，core image filters, Quartz 2D图形，甚至是原始像素数据。在Sprite Kit中，可以使用SKTextureAtlas来创建纹理图集。
+
+需要注意的是，在cocos2d中有CCSpriteBatchNode精灵表单，但Sprite Kit中只有SKTextureAtlas，两者的作用是类似的，都是使用单次OpenGL ES命令调用替代重复的OpenGL ES命令。
+
+（6） SKAction vs CCAction
+SKAction在Sprite Kit中的作用非常重要，和CCAction类似，同样用于创建节点动作。合理使用动作(actions)可以让游戏世界更加丰富多彩，灵活多变，充满吸引力。
+
+使用SKAction可以更改节点的多个属性，如位置，旋转或缩放等。部分动作只能用于SKSpriteNode，比如更改精灵的色彩或纹理属性。
+
+此外，Sprite Kit中允许创建三种复杂的动作，可以将其它动作作为子动作，分别是序列动作，组合动作和重复动作。在Sprite Kit中，序列动作，组合动作和重复动作都是可以嵌套的。
+
+需要注意的是，开发者不能直接创建SKAction的子类，而是直接对目标对象调用方法或执行块语句。
+
+我们都知道cocos2d中提供了多个CCAction的子类，但在Sprite Kit中只有一个SKAction,且不允许创建其子类。
+
+总的来说，从创建动作的角度来看，SKAction和CCAction可以达到完全相同的效果。
+
+（7）SKPhysicsBody/SKPhysicsContact/SKPhysicsJoint/SKPhysicsWorld  vs Box2d/chipmunk
+大家都知道，cocos2d并没有自己的物理引擎，而是内置了box2d或chipmunk两个第三方物理引擎。而box2d采用c++语言开发，chipmunk采用c语言开发，对iOS开发者来说多少是个麻烦事。
+
+从这个角度来看，Sprite Kit可谓直接胜出。SKPhysics相关类非常简洁明了，原生Objective-C，无论从配置到使用都很简单。
+
+关于这部分，可以参考苹果官方的Adventure游戏，这里也不再多说。
+
+比较到这里，基本上已经涵盖了Sprite Kit绝大多数的核心类。感觉Sprite Kit的设计非常清晰简洁，而cocos2d由于属于开源项目，从结构上来说稍显复杂，但因为众多开发者的反馈和贡献，功能却比Sprite Kit要丰富很多。
+
+（8）AV Foundation vs CocosDenshion
+在cocos2d中使用cocosDenshion来播放游戏的音效和背景音乐，只需一行代码就可以搞定一切。
+
+在Sprite Kit中需要借助AV Foundation的帮助，但功能显然要强大很多。
+
+看完以上这些比较，着重在于SpriteKit的部分，对SpriteKit会有更深刻的理解。
+
+至于工具方面，Xcode几乎可以完成SpriteKit需要的所有东西，粒子系统以及texture atlas图集等。
+
+更重要的一点，iOS其他的一些Api也能引用到SpriteKit中去，比如用TextKit做字体等，确实很强大。
+
+*/

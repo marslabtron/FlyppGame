@@ -1,0 +1,639 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F0217AE41D017C7A004FF032 /* enemyHit.wav in Resources */ = {isa = PBXBuildFile; fileRef = F0217ADF1D017C7A004FF032 /* enemyHit.wav */; };
+		F0217AE51D017C7A004FF032 /* gameOver.wav in Resources */ = {isa = PBXBuildFile; fileRef = F0217AE01D017C7A004FF032 /* gameOver.wav */; };
+		F0217AE61D017C7A004FF032 /* gameStart.wav in Resources */ = {isa = PBXBuildFile; fileRef = F0217AE11D017C7A004FF032 /* gameStart.wav */; };
+		F0217AE71D017C7A004FF032 /* playerHit.wav in Resources */ = {isa = PBXBuildFile; fileRef = F0217AE21D017C7A004FF032 /* playerHit.wav */; };
+		F0217AE81D017C7A004FF032 /* shoot.wav in Resources */ = {isa = PBXBuildFile; fileRef = F0217AE31D017C7A004FF032 /* shoot.wav */; };
+		F0217AEA1D0181BF004FF032 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F0217AE91D0181BF004FF032 /* icon.png */; };
+		F0A231811CFED1210050457E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A231801CFED1210050457E /* main.m */; };
+		F0A231841CFED1210050457E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A231831CFED1210050457E /* AppDelegate.m */; };
+		F0A231871CFED1210050457E /* LeveScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A231861CFED1210050457E /* LeveScene.m */; };
+		F0A231891CFED1210050457E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F0A231881CFED1210050457E /* GameScene.sks */; };
+		F0A2318C1CFED1210050457E /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A2318B1CFED1210050457E /* GameViewController.m */; };
+		F0A2318F1CFED1210050457E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0A2318D1CFED1210050457E /* Main.storyboard */; };
+		F0A231911CFED1210050457E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0A231901CFED1210050457E /* Assets.xcassets */; };
+		F0A231941CFED1210050457E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0A231921CFED1210050457E /* LaunchScreen.storyboard */; };
+		F0A2319F1CFED1210050457E /* FlyppGameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A2319E1CFED1210050457E /* FlyppGameTests.m */; };
+		F0A231AA1CFED1210050457E /* FlyppGameUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A231A91CFED1210050457E /* FlyppGameUITests.m */; };
+		F0A231BA1CFEE5FC0050457E /* PlayerNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A231B91CFEE5FC0050457E /* PlayerNode.m */; };
+		F0AD4B4F1CFFC2390020FF4E /* EnemyNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AD4B4E1CFFC2390020FF4E /* EnemyNode.m */; };
+		F0AD4B541CFFCEA00020FF4E /* BulletNode.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AD4B531CFFCEA00020FF4E /* BulletNode.m */; };
+		F0AD4B571D00056F0020FF4E /* SpritKit_Note.strings in Resources */ = {isa = PBXBuildFile; fileRef = F0AD4B561D00056F0020FF4E /* SpritKit_Note.strings */; };
+		F0AD4B5D1D0025A10020FF4E /* SKNode+Extra.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AD4B5C1D0025A10020FF4E /* SKNode+Extra.m */; };
+		F0AD4B601D0035490020FF4E /* MissileExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = F0AD4B5E1D0035490020FF4E /* MissileExplosion.sks */; };
+		F0AD4B611D0035490020FF4E /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = F0AD4B5F1D0035490020FF4E /* spark.png */; };
+		F0AD4B631D0037640020FF4E /* EnemyExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = F0AD4B621D0037640020FF4E /* EnemyExplosion.sks */; };
+		F0AD4B661D00399A0020FF4E /* GameOverScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AD4B651D00399A0020FF4E /* GameOverScene.m */; };
+		F0AD4B691D003DDD0020FF4E /* StartScene.m in Sources */ = {isa = PBXBuildFile; fileRef = F0AD4B681D003DDD0020FF4E /* StartScene.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F0A2319B1CFED1210050457E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F0A231741CFED1200050457E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F0A2317B1CFED1210050457E;
+			remoteInfo = FlyppGame;
+		};
+		F0A231A61CFED1210050457E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F0A231741CFED1200050457E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F0A2317B1CFED1210050457E;
+			remoteInfo = FlyppGame;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F0217ADF1D017C7A004FF032 /* enemyHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = enemyHit.wav; sourceTree = "<group>"; };
+		F0217AE01D017C7A004FF032 /* gameOver.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gameOver.wav; sourceTree = "<group>"; };
+		F0217AE11D017C7A004FF032 /* gameStart.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gameStart.wav; sourceTree = "<group>"; };
+		F0217AE21D017C7A004FF032 /* playerHit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = playerHit.wav; sourceTree = "<group>"; };
+		F0217AE31D017C7A004FF032 /* shoot.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = shoot.wav; sourceTree = "<group>"; };
+		F0217AE91D0181BF004FF032 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		F0A2317C1CFED1210050457E /* FlyppGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlyppGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0A231801CFED1210050457E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F0A231821CFED1210050457E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F0A231831CFED1210050457E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F0A231851CFED1210050457E /* LeveScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeveScene.h; sourceTree = "<group>"; };
+		F0A231861CFED1210050457E /* LeveScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LeveScene.m; sourceTree = "<group>"; };
+		F0A231881CFED1210050457E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		F0A2318A1CFED1210050457E /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		F0A2318B1CFED1210050457E /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		F0A2318E1CFED1210050457E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F0A231901CFED1210050457E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F0A231931CFED1210050457E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F0A231951CFED1210050457E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0A2319A1CFED1210050457E /* FlyppGameTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlyppGameTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0A2319E1CFED1210050457E /* FlyppGameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlyppGameTests.m; sourceTree = "<group>"; };
+		F0A231A01CFED1210050457E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0A231A51CFED1210050457E /* FlyppGameUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlyppGameUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0A231A91CFED1210050457E /* FlyppGameUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlyppGameUITests.m; sourceTree = "<group>"; };
+		F0A231AB1CFED1210050457E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0A231B81CFEE5FC0050457E /* PlayerNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerNode.h; sourceTree = "<group>"; };
+		F0A231B91CFEE5FC0050457E /* PlayerNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerNode.m; sourceTree = "<group>"; };
+		F0AD4B4D1CFFC2390020FF4E /* EnemyNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyNode.h; sourceTree = "<group>"; };
+		F0AD4B4E1CFFC2390020FF4E /* EnemyNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnemyNode.m; sourceTree = "<group>"; };
+		F0AD4B511CFFCDF70020FF4E /* PhysicsCategory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhysicsCategory.h; sourceTree = "<group>"; };
+		F0AD4B521CFFCEA00020FF4E /* BulletNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BulletNode.h; sourceTree = "<group>"; };
+		F0AD4B531CFFCEA00020FF4E /* BulletNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BulletNode.m; sourceTree = "<group>"; };
+		F0AD4B551CFFD0DA0020FF4E /* Geometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Geometry.h; sourceTree = "<group>"; };
+		F0AD4B561D00056F0020FF4E /* SpritKit_Note.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = SpritKit_Note.strings; sourceTree = "<group>"; };
+		F0AD4B5B1D0025A10020FF4E /* SKNode+Extra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKNode+Extra.h"; sourceTree = "<group>"; };
+		F0AD4B5C1D0025A10020FF4E /* SKNode+Extra.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKNode+Extra.m"; sourceTree = "<group>"; };
+		F0AD4B5E1D0035490020FF4E /* MissileExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MissileExplosion.sks; sourceTree = "<group>"; };
+		F0AD4B5F1D0035490020FF4E /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		F0AD4B621D0037640020FF4E /* EnemyExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EnemyExplosion.sks; sourceTree = "<group>"; };
+		F0AD4B641D00399A0020FF4E /* GameOverScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverScene.h; sourceTree = "<group>"; };
+		F0AD4B651D00399A0020FF4E /* GameOverScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverScene.m; sourceTree = "<group>"; };
+		F0AD4B671D003DDD0020FF4E /* StartScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartScene.h; sourceTree = "<group>"; };
+		F0AD4B681D003DDD0020FF4E /* StartScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartScene.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F0A231791CFED1210050457E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F0A231971CFED1210050457E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F0A231A21CFED1210050457E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F0A231731CFED1200050457E = {
+			isa = PBXGroup;
+			children = (
+				F0A2317E1CFED1210050457E /* FlyppGame */,
+				F0A2319D1CFED1210050457E /* FlyppGameTests */,
+				F0A231A81CFED1210050457E /* FlyppGameUITests */,
+				F0A2317D1CFED1210050457E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F0A2317D1CFED1210050457E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F0A2317C1CFED1210050457E /* FlyppGame.app */,
+				F0A2319A1CFED1210050457E /* FlyppGameTests.xctest */,
+				F0A231A51CFED1210050457E /* FlyppGameUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F0A2317E1CFED1210050457E /* FlyppGame */ = {
+			isa = PBXGroup;
+			children = (
+				F0A231B71CFEE5E10050457E /* Node */,
+				F0A231821CFED1210050457E /* AppDelegate.h */,
+				F0A231831CFED1210050457E /* AppDelegate.m */,
+				F0A231851CFED1210050457E /* LeveScene.h */,
+				F0A231861CFED1210050457E /* LeveScene.m */,
+				F0AD4B641D00399A0020FF4E /* GameOverScene.h */,
+				F0AD4B651D00399A0020FF4E /* GameOverScene.m */,
+				F0AD4B671D003DDD0020FF4E /* StartScene.h */,
+				F0AD4B681D003DDD0020FF4E /* StartScene.m */,
+				F0A231881CFED1210050457E /* GameScene.sks */,
+				F0A2318A1CFED1210050457E /* GameViewController.h */,
+				F0A2318B1CFED1210050457E /* GameViewController.m */,
+				F0A2318D1CFED1210050457E /* Main.storyboard */,
+				F0A231901CFED1210050457E /* Assets.xcassets */,
+				F0A231921CFED1210050457E /* LaunchScreen.storyboard */,
+				F0A231951CFED1210050457E /* Info.plist */,
+				F0A2317F1CFED1210050457E /* Supporting Files */,
+			);
+			path = FlyppGame;
+			sourceTree = "<group>";
+		};
+		F0A2317F1CFED1210050457E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F0A231801CFED1210050457E /* main.m */,
+				F0AD4B561D00056F0020FF4E /* SpritKit_Note.strings */,
+				F0217AE91D0181BF004FF032 /* icon.png */,
+				F0217ADF1D017C7A004FF032 /* enemyHit.wav */,
+				F0217AE01D017C7A004FF032 /* gameOver.wav */,
+				F0217AE11D017C7A004FF032 /* gameStart.wav */,
+				F0217AE21D017C7A004FF032 /* playerHit.wav */,
+				F0217AE31D017C7A004FF032 /* shoot.wav */,
+				F0AD4B5E1D0035490020FF4E /* MissileExplosion.sks */,
+				F0AD4B5F1D0035490020FF4E /* spark.png */,
+				F0AD4B621D0037640020FF4E /* EnemyExplosion.sks */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F0A2319D1CFED1210050457E /* FlyppGameTests */ = {
+			isa = PBXGroup;
+			children = (
+				F0A2319E1CFED1210050457E /* FlyppGameTests.m */,
+				F0A231A01CFED1210050457E /* Info.plist */,
+			);
+			path = FlyppGameTests;
+			sourceTree = "<group>";
+		};
+		F0A231A81CFED1210050457E /* FlyppGameUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F0A231A91CFED1210050457E /* FlyppGameUITests.m */,
+				F0A231AB1CFED1210050457E /* Info.plist */,
+			);
+			path = FlyppGameUITests;
+			sourceTree = "<group>";
+		};
+		F0A231B71CFEE5E10050457E /* Node */ = {
+			isa = PBXGroup;
+			children = (
+				F0A231B81CFEE5FC0050457E /* PlayerNode.h */,
+				F0A231B91CFEE5FC0050457E /* PlayerNode.m */,
+				F0AD4B4D1CFFC2390020FF4E /* EnemyNode.h */,
+				F0AD4B4E1CFFC2390020FF4E /* EnemyNode.m */,
+				F0AD4B521CFFCEA00020FF4E /* BulletNode.h */,
+				F0AD4B531CFFCEA00020FF4E /* BulletNode.m */,
+				F0AD4B511CFFCDF70020FF4E /* PhysicsCategory.h */,
+				F0AD4B551CFFD0DA0020FF4E /* Geometry.h */,
+				F0AD4B5B1D0025A10020FF4E /* SKNode+Extra.h */,
+				F0AD4B5C1D0025A10020FF4E /* SKNode+Extra.m */,
+			);
+			path = Node;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F0A2317B1CFED1210050457E /* FlyppGame */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F0A231AE1CFED1210050457E /* Build configuration list for PBXNativeTarget "FlyppGame" */;
+			buildPhases = (
+				F0A231781CFED1210050457E /* Sources */,
+				F0A231791CFED1210050457E /* Frameworks */,
+				F0A2317A1CFED1210050457E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FlyppGame;
+			productName = FlyppGame;
+			productReference = F0A2317C1CFED1210050457E /* FlyppGame.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F0A231991CFED1210050457E /* FlyppGameTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F0A231B11CFED1210050457E /* Build configuration list for PBXNativeTarget "FlyppGameTests" */;
+			buildPhases = (
+				F0A231961CFED1210050457E /* Sources */,
+				F0A231971CFED1210050457E /* Frameworks */,
+				F0A231981CFED1210050457E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F0A2319C1CFED1210050457E /* PBXTargetDependency */,
+			);
+			name = FlyppGameTests;
+			productName = FlyppGameTests;
+			productReference = F0A2319A1CFED1210050457E /* FlyppGameTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F0A231A41CFED1210050457E /* FlyppGameUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F0A231B41CFED1210050457E /* Build configuration list for PBXNativeTarget "FlyppGameUITests" */;
+			buildPhases = (
+				F0A231A11CFED1210050457E /* Sources */,
+				F0A231A21CFED1210050457E /* Frameworks */,
+				F0A231A31CFED1210050457E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F0A231A71CFED1210050457E /* PBXTargetDependency */,
+			);
+			name = FlyppGameUITests;
+			productName = FlyppGameUITests;
+			productReference = F0A231A51CFED1210050457E /* FlyppGameUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F0A231741CFED1200050457E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = dingjian;
+				TargetAttributes = {
+					F0A2317B1CFED1210050457E = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = EUJ6KJ8TMF;
+					};
+					F0A231991CFED1210050457E = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = F0A2317B1CFED1210050457E;
+					};
+					F0A231A41CFED1210050457E = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = F0A2317B1CFED1210050457E;
+					};
+				};
+			};
+			buildConfigurationList = F0A231771CFED1200050457E /* Build configuration list for PBXProject "FlyppGame" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F0A231731CFED1200050457E;
+			productRefGroup = F0A2317D1CFED1210050457E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F0A2317B1CFED1210050457E /* FlyppGame */,
+				F0A231991CFED1210050457E /* FlyppGameTests */,
+				F0A231A41CFED1210050457E /* FlyppGameUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F0A2317A1CFED1210050457E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0AD4B631D0037640020FF4E /* EnemyExplosion.sks in Resources */,
+				F0217AE41D017C7A004FF032 /* enemyHit.wav in Resources */,
+				F0AD4B601D0035490020FF4E /* MissileExplosion.sks in Resources */,
+				F0A231891CFED1210050457E /* GameScene.sks in Resources */,
+				F0217AE61D017C7A004FF032 /* gameStart.wav in Resources */,
+				F0217AE51D017C7A004FF032 /* gameOver.wav in Resources */,
+				F0A231941CFED1210050457E /* LaunchScreen.storyboard in Resources */,
+				F0217AE71D017C7A004FF032 /* playerHit.wav in Resources */,
+				F0217AEA1D0181BF004FF032 /* icon.png in Resources */,
+				F0AD4B611D0035490020FF4E /* spark.png in Resources */,
+				F0A231911CFED1210050457E /* Assets.xcassets in Resources */,
+				F0AD4B571D00056F0020FF4E /* SpritKit_Note.strings in Resources */,
+				F0217AE81D017C7A004FF032 /* shoot.wav in Resources */,
+				F0A2318F1CFED1210050457E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F0A231981CFED1210050457E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F0A231A31CFED1210050457E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F0A231781CFED1210050457E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0A2318C1CFED1210050457E /* GameViewController.m in Sources */,
+				F0AD4B661D00399A0020FF4E /* GameOverScene.m in Sources */,
+				F0AD4B541CFFCEA00020FF4E /* BulletNode.m in Sources */,
+				F0A231841CFED1210050457E /* AppDelegate.m in Sources */,
+				F0AD4B4F1CFFC2390020FF4E /* EnemyNode.m in Sources */,
+				F0AD4B5D1D0025A10020FF4E /* SKNode+Extra.m in Sources */,
+				F0A231871CFED1210050457E /* LeveScene.m in Sources */,
+				F0A231811CFED1210050457E /* main.m in Sources */,
+				F0A231BA1CFEE5FC0050457E /* PlayerNode.m in Sources */,
+				F0AD4B691D003DDD0020FF4E /* StartScene.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F0A231961CFED1210050457E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0A2319F1CFED1210050457E /* FlyppGameTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F0A231A11CFED1210050457E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0A231AA1CFED1210050457E /* FlyppGameUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F0A2319C1CFED1210050457E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F0A2317B1CFED1210050457E /* FlyppGame */;
+			targetProxy = F0A2319B1CFED1210050457E /* PBXContainerItemProxy */;
+		};
+		F0A231A71CFED1210050457E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F0A2317B1CFED1210050457E /* FlyppGame */;
+			targetProxy = F0A231A61CFED1210050457E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F0A2318D1CFED1210050457E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F0A2318E1CFED1210050457E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F0A231921CFED1210050457E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F0A231931CFED1210050457E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F0A231AC1CFED1210050457E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F0A231AD1CFED1210050457E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F0A231AF1CFED1210050457E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = FlyppGame/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = dingjian.FlyppGame00;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F0A231B01CFED1210050457E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = FlyppGame/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = dingjian.FlyppGame00;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F0A231B21CFED1210050457E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = FlyppGameTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = dingjian.FlyppGameTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlyppGame.app/FlyppGame";
+			};
+			name = Debug;
+		};
+		F0A231B31CFED1210050457E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = FlyppGameTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = dingjian.FlyppGameTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlyppGame.app/FlyppGame";
+			};
+			name = Release;
+		};
+		F0A231B51CFED1210050457E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = FlyppGameUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = dingjian.FlyppGameUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = FlyppGame;
+			};
+			name = Debug;
+		};
+		F0A231B61CFED1210050457E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = FlyppGameUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = dingjian.FlyppGameUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = FlyppGame;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F0A231771CFED1200050457E /* Build configuration list for PBXProject "FlyppGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0A231AC1CFED1210050457E /* Debug */,
+				F0A231AD1CFED1210050457E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F0A231AE1CFED1210050457E /* Build configuration list for PBXNativeTarget "FlyppGame" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0A231AF1CFED1210050457E /* Debug */,
+				F0A231B01CFED1210050457E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F0A231B11CFED1210050457E /* Build configuration list for PBXNativeTarget "FlyppGameTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0A231B21CFED1210050457E /* Debug */,
+				F0A231B31CFED1210050457E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F0A231B41CFED1210050457E /* Build configuration list for PBXNativeTarget "FlyppGameUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0A231B51CFED1210050457E /* Debug */,
+				F0A231B61CFED1210050457E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F0A231741CFED1200050457E /* Project object */;
+}
